@@ -1,0 +1,118 @@
+<section class="auth-shell">
+  <div class="auth-card wide-card">
+    <div class="auth-header">
+      <p class="eyebrow">Create account</p>
+      <h1>Join TalentSync</h1>
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="role-selector">
+        <label>
+          <span>I am a</span>
+          <select formControlName="role">
+            <option value="student">Student</option>
+            <option value="recruiter">Recruiter</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="grid-row">
+        <label>
+          <span>Email</span>
+          <input type="email" formControlName="email" placeholder="you@example.com" />
+        </label>
+
+        <label>
+          <span>Password</span>
+          <input type="password" formControlName="password" placeholder="Minimum 6 characters" />
+        </label>
+      </div>
+
+      <div *ngIf="selectedRole === 'student'" class="student-fields">
+        <div class="grid-row">
+          <label>
+            <span>Full Name</span>
+            <input type="text" formControlName="fullName" placeholder="Your full name" />
+          </label>
+
+          <label>
+            <span>Phone</span>
+            <input type="text" formControlName="phone" placeholder="Phone number" />
+          </label>
+        </div>
+
+        <div class="grid-row">
+          <label>
+            <span>University</span>
+            <input type="text" formControlName="university" placeholder="University" />
+          </label>
+
+          <label>
+            <span>Degree</span>
+            <input type="text" formControlName="degree" placeholder="Degree" />
+          </label>
+        </div>
+
+        <div class="grid-row">
+          <label>
+            <span>Graduation Year</span>
+            <input type="number" formControlName="graduationYear" placeholder="2028" />
+          </label>
+
+          <label>
+            <span>Skills</span>
+            <input type="text" formControlName="skills" placeholder="Java, SQL, Design" />
+          </label>
+        </div>
+
+        <label>
+          <span>Bio</span>
+          <textarea formControlName="bio" rows="3" placeholder="Tell recruiters about yourself"></textarea>
+        </label>
+      </div>
+
+      <div *ngIf="selectedRole === 'recruiter'" class="recruiter-fields">
+        <div class="grid-row">
+          <label>
+            <span>Company Name</span>
+            <input type="text" formControlName="companyName" placeholder="Acme Labs" />
+          </label>
+
+          <label>
+            <span>Contact Person</span>
+            <input type="text" formControlName="contactPerson" placeholder="John Smith" />
+          </label>
+        </div>
+
+        <div class="grid-row">
+          <label>
+            <span>Phone</span>
+            <input type="text" formControlName="phone" placeholder="Company phone" />
+          </label>
+
+          <label>
+            <span>Position</span>
+            <input type="text" formControlName="position" placeholder="Hiring Manager" />
+          </label>
+        </div>
+
+        <label>
+          <span>Company Website</span>
+          <input type="url" formControlName="companyWebsite" placeholder="https://example.com" />
+        </label>
+      </div>
+
+      <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+      <p class="success" *ngIf="successMessage">{{ successMessage }}</p>
+
+      <button type="submit" [disabled]="isSubmitting">
+        {{ isSubmitting ? 'Creating account...' : 'Create Account' }}
+      </button>
+    </form>
+
+    <p class="switch-text">
+      Already have an account?
+      <a routerLink="/login">Login</a>
+    </p>
+  </div>
+</section>

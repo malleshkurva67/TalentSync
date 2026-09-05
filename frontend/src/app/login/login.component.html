@@ -1,0 +1,39 @@
+<section class="auth-shell">
+  <div class="auth-card">
+    <div class="auth-header">
+      <p class="eyebrow">Welcome back</p>
+      <h1>TalentSync Login</h1>
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <label>
+        <span>Email</span>
+        <input type="email" formControlName="email" placeholder="you@example.com" />
+      </label>
+
+      <label>
+        <span>Password</span>
+        <input type="password" formControlName="password" placeholder="Enter your password" />
+      </label>
+
+      <label>
+        <span>Login as</span>
+        <select formControlName="role">
+          <option value="student">Student</option>
+          <option value="recruiter">Recruiter</option>
+        </select>
+      </label>
+
+      <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+
+      <button type="submit" [disabled]="isSubmitting">
+        {{ isSubmitting ? 'Signing in...' : 'Login' }}
+      </button>
+    </form>
+
+    <p class="switch-text">
+      Need an account?
+      <a routerLink="/signup">Create one</a>
+    </p>
+  </div>
+</section>
